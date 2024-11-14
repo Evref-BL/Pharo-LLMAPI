@@ -30,6 +30,7 @@ api payload
 		 }.
 
 result := api performRequest.
+resultContent := result choices anyOne message content.
 ```
 
 ### For the FIM
@@ -46,5 +47,6 @@ api payload
 	max_tokens: 250;
 	prompt: 'def';
 	suffix: 'return a + b'.
-api performRequest
+result := api performRequest.
+resultContent := result choices anyOne message content.
 ```
