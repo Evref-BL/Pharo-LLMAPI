@@ -5,7 +5,8 @@ Class {
 		'host',
 		'port',
 		'client',
-		'apiKey'
+		'apiKey',
+		'content'
 	],
 	#category : #'LLM-API'
 }
@@ -14,6 +15,12 @@ Class {
 LLMAPI class >> chat [
 
 	^ LLMAPIChat new
+]
+
+{ #category : #'as yet unclassified' }
+LLMAPI class >> fim [
+
+	^ LLMAPIFim new
 ]
 
 { #category : #accessing }
@@ -41,6 +48,18 @@ LLMAPI >> client: anObject [
 ]
 
 { #category : #accessing }
+LLMAPI >> content [
+
+	^ content
+]
+
+{ #category : #accessing }
+LLMAPI >> content: anObject [
+
+	content := anObject
+]
+
+{ #category : #accessing }
 LLMAPI >> host [
 
 	^ host
@@ -52,7 +71,7 @@ LLMAPI >> host: anObject [
 	host := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 LLMAPI >> initialize [
 
 	super initialize.
@@ -66,6 +85,22 @@ LLMAPI >> path [
 ]
 
 { #category : #accessing }
+LLMAPI >> payload [
+	"return the content or a new class for this type of API"
+
+	^ self content ifNil: [
+		  self content: self payloadClass new.
+		  self content ]
+]
+
+{ #category : #accessing }
+LLMAPI >> payloadClass [
+	"return the class of the main  LLMAPIObject that one should use with this API. This API helps to prevent some bugs or usage issue"
+
+	^ self subclassResponsibility
+]
+
+{ #category : #api }
 LLMAPI >> performRequest [
 	self subclassResponsibility
 ]

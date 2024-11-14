@@ -1,22 +1,22 @@
 Class {
-	#name : #LLMAPIChat,
+	#name : #LLMAPIFim,
 	#superclass : #LLMAPI,
 	#category : #'LLM-API'
 }
 
 { #category : #accessing }
-LLMAPIChat >> path [
-	^ 'v1/chat/completions'
+LLMAPIFim >> path [
+	^ 'v1/fim/completions'
 ]
 
 { #category : #accessing }
-LLMAPIChat >> payloadClass [
+LLMAPIFim >> payloadClass [
 
-	^ LLMAPIChatObjectPayload
+	^ LLMAPIFimObjectPayload
 ]
 
 { #category : #accessing }
-LLMAPIChat >> performRequest [
+LLMAPIFim >> performRequest [
 
 	self prepareRequest.
 	self client entity: (ZnEntity json:
