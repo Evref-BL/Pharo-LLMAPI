@@ -12,22 +12,39 @@ Metacello new
 
 ## Example
 
+### For the chat
+
 ```st
 api := LLMAPI chat.
 api host: 'api.mistral.ai'.
-api apiKey: '<apikey>'.
+api apiKey: '<apiKey>'.
 
-api content: (LLMAPIChatObjectPayload new
-	temperature: 1.5;
+api payload
+	temperature: 0.5;
 	model: 'mistral-small-latest';
 	top_p: 1;
 	max_tokens: 250;
 	messages: {
 		LLMAPIChatObjectMessage role: 'system' content: 'You are a usefull assistant'.
 		LLMAPIChatObjectMessage role: 'user' content: 'How to write hello world in Pharo?'.
-		 };
-	yourself
-	).
+		 }.
 
+result := api performRequest.
+```
+
+### For the FIM
+
+```st
+api := LLMAPI fim.
+api host: 'api.mistral.ai'.
+api apiKey: '<apiKey>'.
+
+api payload
+	temperature: 0.2;
+	model: 'codestral-2405';
+	top_p: 1;
+	max_tokens: 250;
+	prompt: 'def';
+	suffix: 'return a + b'.
 api performRequest
 ```
