@@ -1,6 +1,6 @@
 Class {
-	#name : #LLMAPIChatObjectPayload,
-	#superclass : #LLMAPIObject,
+	#name : 'LLMAPIChatObjectPayload',
+	#superclass : 'LLMAPIObject',
 	#instVars : [
 		'model',
 		'temperature',
@@ -18,10 +18,11 @@ Class {
 		'n',
 		'safe_prompt'
 	],
-	#category : #'LLM-API'
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> asJsonableObject [
 
 	| dic |
@@ -37,181 +38,181 @@ LLMAPIChatObjectPayload >> asJsonableObject [
 	^ dic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> frequence_penalty [
 
 	^ frequence_penalty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> frequence_penalty: anObject [
 
 	frequence_penalty := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> max_tokens [
 
 	^ max_tokens
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> max_tokens: anObject [
 
 	max_tokens := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> messages [
 
 	^ messages
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> messages: anObject [
 
 	messages := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> n [
 
 	^ n
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> n: anObject [
 
 	n := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> presence_penalty [
 
 	^ presence_penalty
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> presence_penalty: anObject [
 
 	presence_penalty := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> random_seed [
 
 	^ random_seed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> random_seed: anObject [
 
 	random_seed := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> response_format [
 
 	^ response_format
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> response_format: anObject [
 
 	response_format := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> safe_prompt [
 
 	^ safe_prompt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> safe_prompt: anObject [
 
 	safe_prompt := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> stop [
 
 	^ stop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> stop: anObject [
 
 	stop := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> stream [
 
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> stream: anObject [
 
 	stream := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> temperature [
 
 	^ temperature
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> temperature: anObject [
 
 	temperature := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> tool_choice [
 
 	^ tool_choice
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> tool_choice: anObject [
 
 	tool_choice := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> tools [
 
 	^ tools
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> tools: anObject [
 
 	tools := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> top_p [
 
 	^ top_p
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectPayload >> top_p: anObject [
 
 	top_p := anObject

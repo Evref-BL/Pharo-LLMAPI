@@ -1,14 +1,15 @@
 Class {
-	#name : #LLMAPIChatObjectMessage,
-	#superclass : #LLMAPIObject,
+	#name : 'LLMAPIChatObjectMessage',
+	#superclass : 'LLMAPIObject',
 	#instVars : [
 		'role',
 		'content'
 	],
-	#category : #'LLM-API'
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LLMAPIChatObjectMessage class >> role: aRole content: aContent [
 
 	^ self new
@@ -17,7 +18,7 @@ LLMAPIChatObjectMessage class >> role: aRole content: aContent [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectMessage >> asJsonableObject [
 
 	^ Dictionary new
@@ -26,25 +27,25 @@ LLMAPIChatObjectMessage >> asJsonableObject [
 		  yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectMessage >> content [
 
 	^ content
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectMessage >> content: anObject [
 
 	content := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectMessage >> role [
 
 	^ role
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChatObjectMessage >> role: anObject [
 
 	role := anObject

@@ -1,6 +1,6 @@
 Class {
-	#name : #LLMAPIFimObjectPayload,
-	#superclass : #LLMAPIObject,
+	#name : 'LLMAPIFimObjectPayload',
+	#superclass : 'LLMAPIObject',
 	#instVars : [
 		'model',
 		'temperature',
@@ -13,10 +13,11 @@ Class {
 		'suffix',
 		'min_tokenss'
 	],
-	#category : #'LLM-API'
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> asJsonableObject [
 
 	| dic |
@@ -29,121 +30,121 @@ LLMAPIFimObjectPayload >> asJsonableObject [
 	^ dic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> max_tokens [
 
 	^ max_tokens
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> max_tokens: anObject [
 
 	max_tokens := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> min_tokenss [
 
 	^ min_tokenss
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> min_tokenss: anObject [
 
 	min_tokenss := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> model [
 
 	^ model
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> model: anObject [
 
 	model := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> prompt [
 
 	^ prompt
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> prompt: anObject [
 
 	prompt := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> random_seed [
 
 	^ random_seed
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> random_seed: anObject [
 
 	random_seed := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> stop [
 
 	^ stop
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> stop: anObject [
 
 	stop := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> stream [
 
 	^ stream
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> stream: anObject [
 
 	stream := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> suffix [
 
 	^ suffix
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> suffix: anObject [
 
 	suffix := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> temperature [
 
 	^ temperature
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> temperature: anObject [
 
 	temperature := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> top_p [
 
 	^ top_p
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFimObjectPayload >> top_p: anObject [
 
 	top_p := anObject

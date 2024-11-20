@@ -1,90 +1,123 @@
 Class {
-	#name : #LLMAPI,
-	#superclass : #Object,
+	#name : 'LLMAPI',
+	#superclass : 'Object',
 	#instVars : [
 		'host',
 		'port',
 		'client',
-		'apiKey',
-		'content'
+		'content',
+		'apiKey'
 	],
-	#category : #'LLM-API'
+	#classInstVars : [
+		'apiKey'
+	],
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'accessing' }
+LLMAPI class >> apiKey [
+
+	^ apiKey
+]
+
+{ #category : 'accessing' }
+LLMAPI class >> apiKey: anObject [
+
+	apiKey := anObject
+]
+
+{ #category : 'as yet unclassified' }
 LLMAPI class >> chat [
 
 	^ LLMAPIChat new
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 LLMAPI class >> fim [
 
 	^ LLMAPIFim new
 ]
 
-{ #category : #accessing }
+{ #category : 'as yet unclassified' }
+LLMAPI class >> llmSettingOn: aBuilder [
+
+	<systemsettings>
+	(aBuilder group: #LLMAPI)
+		parent: #tools;
+		name: 'LLM API';
+		with: [
+			(aBuilder setting: #apiKey)
+				order: -100000;
+				label: 'LLM API Key';
+				target: self;
+				default: '';
+				ghostHelp: 'My key' ]
+]
+
+{ #category : 'accessing' }
 LLMAPI >> apiKey [
 
 	^ apiKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> apiKey: anObject [
 
 	apiKey := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> client [
 
 	^ client
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> client: anObject [
 
 	client := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> content [
 
 	^ content
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> content: anObject [
 
 	content := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> host [
 
 	^ host
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> host: anObject [
 
 	host := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 LLMAPI >> initialize [
 
 	super initialize.
-	client := ZnClient new
+	client := ZnClient new.
+	self apiKey: LLMAPI apiKey
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> path [
 
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> payload [
 	"return the content or a new class for this type of API"
 
@@ -93,31 +126,31 @@ LLMAPI >> payload [
 		  self content ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> payloadClass [
 	"return the class of the main  LLMAPIObject that one should use with this API. This API helps to prevent some bugs or usage issue"
 
 	^ self subclassResponsibility
 ]
 
-{ #category : #api }
+{ #category : 'api' }
 LLMAPI >> performRequest [
 	self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> port [
 
 	^ port
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> port: anObject [
 
 	port := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPI >> prepareRequest [
 
 	self apiKey ifNotNil: [ :_apiKey |

@@ -1,21 +1,22 @@
 Class {
-	#name : #LLMAPIFim,
-	#superclass : #LLMAPI,
-	#category : #'LLM-API'
+	#name : 'LLMAPIFim',
+	#superclass : 'LLMAPI',
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFim >> path [
 	^ 'v1/fim/completions'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFim >> payloadClass [
 
 	^ LLMAPIFimObjectPayload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIFim >> performRequest [
 
 	self prepareRequest.

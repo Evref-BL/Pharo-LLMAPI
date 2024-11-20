@@ -1,21 +1,22 @@
 Class {
-	#name : #LLMAPIChat,
-	#superclass : #LLMAPI,
-	#category : #'LLM-API'
+	#name : 'LLMAPIChat',
+	#superclass : 'LLMAPI',
+	#category : 'LLM-API',
+	#package : 'LLM-API'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChat >> path [
 	^ 'v1/chat/completions'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChat >> payloadClass [
 
 	^ LLMAPIChatObjectPayload
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 LLMAPIChat >> performRequest [
 
 	self prepareRequest.
