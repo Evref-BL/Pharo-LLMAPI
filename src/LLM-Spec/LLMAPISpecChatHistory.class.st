@@ -21,32 +21,20 @@ LLMAPISpecChatHistory class >> from: messages [
 LLMAPISpecChatHistory >> addMessage: aMessage [
 
 	self model add: aMessage.
-	panel
-		add: (LLMAPISpecChatBubble from: aMessage)
-		at: 0 @ panel children size + 1
+	panel add: (LLMAPISpecChatBubble from: aMessage)
 ]
 
 { #category : 'layout' }
 LLMAPISpecChatHistory >> defaultLayout [
 
-	^ SpScrollableLayout with: (SpBoxLayout newTopToBottom
-			   add: panel;
-			   yourself)
+	^ SpScrollableLayout with: panel
 ]
 
 { #category : 'initialization' }
 LLMAPISpecChatHistory >> initializePresenters [
 
-	panel := (SpGridLayout build: [ :builder |
-			          builder beRowNotHomogeneous.
-			          self model
-				          do: [ :message |
-					          builder add: (LLMAPISpecChatBubble from: message) ]
-				          separatedBy: [ builder nextRow ] ])
-		         columnSpacing: 0;
-		         borderWidth: 0;
-		         rowSpacing: 0;
-		         beRowNotHomogeneous;
-		         column: 0 expand: true;
-		         yourself
+	panel := SpBoxLayout newTopToBottom.
+
+	self model do: [ :message |
+		panel add: (LLMAPISpecChatBubble from: message) expand: true]
 ]

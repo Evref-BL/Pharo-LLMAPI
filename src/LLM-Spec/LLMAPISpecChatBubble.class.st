@@ -22,21 +22,19 @@ LLMAPISpecChatBubble class >> from: aMessage [
 LLMAPISpecChatBubble >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
-		  add: self model role;
-		  "add: roleText expand: false;"add: contentArea expand: false fill: true;
+		  add: self model role expand: false;
+		  "add: roleText expand: false;"add: contentArea
+		  withConstraints: [ :constraints | 
+			constraints height: (self class inputTextHeight) * 4 ];
 		  yourself
 ]
 
 { #category : 'initialization' }
 LLMAPISpecChatBubble >> initializePresenters [
-
 	"roleText := self newText .
 	roleText text: self model role.
 	roleText editable: false."
-	
-	contentArea  := self newText.
-	contentArea beWrapWord.
-	contentArea text: self model content.
-	contentArea editable: false.
-	
+
+	contentArea := MicrodownPresenter new.
+	contentArea document: (Microdown parse: self model content)
 ]
