@@ -50,3 +50,15 @@ api payload
 result := api performRequest.
 resultContent := result choices anyOne message content.
 ```
+
+## UI
+
+This project also includes a simple UI. Feel free to use it, improve it, and contribute.
+
+Open it with:
+
+```st
+LLMAPISpec open
+```
+
+![alt text](doc/image.png)
