@@ -9,7 +9,8 @@ Class {
 		'apiKey'
 	],
 	#classInstVars : [
-		'apiKey'
+		'apiKey',
+		'host'
 	],
 	#category : 'LLM-API',
 	#package : 'LLM-API'
@@ -39,6 +40,18 @@ LLMAPI class >> fim [
 	^ LLMAPIFim new
 ]
 
+{ #category : 'accessing' }
+LLMAPI class >> host [
+
+	^ host
+]
+
+{ #category : 'accessing' }
+LLMAPI class >> host: anObject [
+
+	host := anObject
+]
+
 { #category : 'as yet unclassified' }
 LLMAPI class >> llmSettingOn: aBuilder [
 
@@ -52,7 +65,13 @@ LLMAPI class >> llmSettingOn: aBuilder [
 				label: 'LLM API Key';
 				target: self;
 				default: '';
-				ghostHelp: 'My key' ]
+				ghostHelp: 'My key'.
+			(aBuilder setting: #host)
+				order: 0;
+				label: 'LLM host';
+				target: self;
+				default: 'api.mistral.ai';
+				ghostHelp: 'api.mistral.ai' ]
 ]
 
 { #category : 'accessing' }
@@ -108,7 +127,8 @@ LLMAPI >> initialize [
 
 	super initialize.
 	client := ZnClient new.
-	self apiKey: LLMAPI apiKey
+	self apiKey: LLMAPI apiKey.
+	self host: LLMAPI host.
 ]
 
 { #category : 'accessing' }

@@ -1,10 +1,11 @@
 Class {
-	#name : #BaselineOfLLMAPI,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfLLMAPI
+	#name : 'BaselineOfLLMAPI',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfLLMAPI',
+	#package : 'BaselineOfLLMAPI'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfLLMAPI >> baseline: spec [
 
 	<baseline>
@@ -14,7 +15,7 @@ BaselineOfLLMAPI >> baseline: spec [
 		self defineGroups: spec ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfLLMAPI >> defineDependencies: spec [
 
 	spec
@@ -22,12 +23,13 @@ BaselineOfLLMAPI >> defineDependencies: spec [
 		with: [ spec repository: 'github://svenvc/NeoJSON/repository' ]
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfLLMAPI >> defineGroups: spec [
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfLLMAPI >> definePackages: spec [
 
-	spec package: 'LLM-API' with: [ spec requires: #( 'NeoJSON' ) ]
+	spec package: 'LLM-API' with: [ spec requires: #( 'NeoJSON' ) ].
+	spec package: 'LLM-Spec' with: [ spec requires: #( 'LLM-API' ) ]
 ]
