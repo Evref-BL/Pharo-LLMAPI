@@ -35,6 +35,7 @@ LLMAPIChatObjectPayload >> asJsonableObject [
 	self top_p ifNotNil: [ :v | dic at: #top_p put: v ].
 	self model ifNotNil: [ :v | dic at: #model put: v ].
 	self max_tokens ifNotNil: [ :v | dic at: #max_tokens put: v ].
+	self tools ifNotNil: [ :v | dic at: #tools put: (v collect: #asJsonableObject) ].
 	^ dic
 ]
 
