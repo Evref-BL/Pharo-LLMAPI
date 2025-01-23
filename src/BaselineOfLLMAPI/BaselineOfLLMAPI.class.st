@@ -31,5 +31,6 @@ BaselineOfLLMAPI >> defineGroups: spec [
 BaselineOfLLMAPI >> definePackages: spec [
 
 	spec package: 'LLM-API' with: [ spec requires: #( 'NeoJSON' ) ].
+	spec package: 'LLM-API-Example' with: [ spec requires: #( 'LLM-API' ) ].
 	spec package: 'LLM-Spec' with: [ spec requires: #( 'LLM-API' ) ]
 ]

@@ -65,7 +65,7 @@ LLMAPIChatObjectTool >> description: anObject [
 	description := anObject
 ]
 
-{ #category : 'accessing' }
+{ #category : 'execution' }
 LLMAPIChatObjectTool >> executeWithArguments: arguments [
 	"Implement this if you want to extend tools and use its default mecanism"
 
