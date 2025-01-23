@@ -1,3 +1,8 @@
+"
+A tool that can be called by LLM. 
+
+When called, it uses `symbol` and `receiver` to perform the call with the parameters
+"
 Class {
 	#name : 'LLMAPIChatObjectTool',
 	#superclass : 'LLMAPIObject',
@@ -5,7 +10,9 @@ Class {
 		'name',
 		'description',
 		'strict',
-		'parameters'
+		'parameters',
+		'receiver',
+		'symbol'
 	],
 	#category : 'LLM-API',
 	#package : 'LLM-API'
@@ -17,6 +24,17 @@ LLMAPIChatObjectTool class >> name: aName description: aDescription [
 	^ self new
 		  name: aName;
 		  description: aDescription;
+		  yourself
+]
+
+{ #category : 'as yet unclassified' }
+LLMAPIChatObjectTool class >> name: aName description: aDescription receiver: aReceiver symbol: anotherSymbol [
+
+	^ self new
+		  name: aName;
+		  description: aDescription;
+		  receiver: aReceiver;
+		  symbol: anotherSymbol;
 		  yourself
 ]
 
@@ -48,6 +66,20 @@ LLMAPIChatObjectTool >> description: anObject [
 ]
 
 { #category : 'accessing' }
+LLMAPIChatObjectTool >> executeWithArguments: arguments [
+	"Implement this if you want to extend tools and use its default mecanism"
+
+	^ self receiver perform: self symbol withArguments: arguments
+]
+
+{ #category : 'initialization' }
+LLMAPIChatObjectTool >> initialize [
+
+	receiver := self.
+	symbol := #execute
+]
+
+{ #category : 'accessing' }
 LLMAPIChatObjectTool >> name [
 
 	^ name
@@ -72,6 +104,18 @@ LLMAPIChatObjectTool >> parameters: anObject [
 ]
 
 { #category : 'accessing' }
+LLMAPIChatObjectTool >> receiver [
+
+	^ receiver
+]
+
+{ #category : 'accessing' }
+LLMAPIChatObjectTool >> receiver: anObject [
+
+	receiver := anObject
+]
+
+{ #category : 'accessing' }
 LLMAPIChatObjectTool >> strict [
 
 	^ strict
@@ -81,4 +125,16 @@ LLMAPIChatObjectTool >> strict [
 LLMAPIChatObjectTool >> strict: anObject [
 
 	strict := anObject
+]
+
+{ #category : 'accessing' }
+LLMAPIChatObjectTool >> symbol [
+
+	^ symbol
+]
+
+{ #category : 'accessing' }
+LLMAPIChatObjectTool >> symbol: anObject [
+
+	symbol := anObject
 ]

@@ -26,7 +26,7 @@ LLMAPISpecChat >> askLLM [
 		messages: history model.
 
 	result := api performRequest.
-	resultContent := result choices anyOne message content.
+	resultContent := result.
 	history addMessage:
 		(LLMAPIChatObjectMessage role: 'assistant' content: resultContent).
 

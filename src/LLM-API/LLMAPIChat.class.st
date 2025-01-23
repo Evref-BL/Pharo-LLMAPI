@@ -19,8 +19,36 @@ LLMAPIChat >> payloadClass [
 { #category : 'accessing' }
 LLMAPIChat >> performRequest [
 
+	| intermediateResult |
 	self prepareRequest.
 	self client entity: (ZnEntity json:
 			 (NeoJSONWriter toString: self content asJsonableObject)).
-	^ self client post
+	intermediateResult := self client post.
+	^ self processIntermediateResult: intermediateResult
+]
+
+{ #category : 'accessing' }
+LLMAPIChat >> processIntermediateResult: intermediateResult [
+
+	| message messages |
+	message := intermediateResult choices anyOne message.
+	messages := self payload messages asOrderedCollection.
+	messages addLast: (LLMAPIChatObjectMessage fromMessage: message).
+	message at: #tool_calls ifPresent: [ :tool_calls |
+		tool_calls ifNotNil: [
+			tool_calls do: [ :tool_call |
+				| tool answer |
+				tool := self payload tools detect: [ :t |
+					        t name = tool_call function name ].
+				answer := tool executeWithArguments:
+					          (NeoJSONReader fromString: tool_call function arguments)
+						          asArray.
+				messages addLast:
+					((LLMAPIChatObjectMessage role: 'tool' content: answer asString)
+						 name: tool name;
+						 tool_call_id: tool_call id;
+						 yourself).
+				self payload messages: messages asArray ].
+			^ self performRequest ] ].
+	^ message content
 ]
