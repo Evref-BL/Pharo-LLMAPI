@@ -9,7 +9,6 @@ Metacello new
   load
 ```
 
-
 ## Example
 
 ### For the chat
@@ -30,7 +29,33 @@ api payload
 		 }.
 
 result := api performRequest.
-resultContent := result choices anyOne message content.
+```
+
+#### Using tools (function call)
+
+You can also create code that will be called by the LLM.
+It is named function call or function tool.
+
+```st
+api := LLMAPI chat.
+api host: 'api.mistral.ai'.
+
+api payload
+	temperature: 0.5;
+	model: 'mistral-small-latest';
+	top_p: 1;
+	max_tokens: 250;
+	tools: { (LLMAPIChatObjectToolCountClasses new) };
+	messages: {
+			(LLMAPIChatObjectMessage
+				 role: 'system'
+				 content: 'You are a usefull assistant').
+			(LLMAPIChatObjectMessage
+				 role: 'user'
+				 content: 'What is the number of classes in my computer ? ') }.
+
+result := api performRequest.
+
 ```
 
 ### For the FIM
@@ -48,7 +73,6 @@ api payload
 	prompt: 'def';
 	suffix: 'return a + b'.
 result := api performRequest.
-resultContent := result choices anyOne message content.
 ```
 
 ## UI
