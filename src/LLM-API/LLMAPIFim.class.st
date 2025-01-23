@@ -22,5 +22,5 @@ LLMAPIFim >> performRequest [
 	self prepareRequest.
 	self client entity: (ZnEntity json:
 			 (NeoJSONWriter toString: self content asJsonableObject)).
-	^ self client post
+	^ self client post choices anyOne message content
 ]
