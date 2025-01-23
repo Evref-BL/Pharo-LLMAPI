@@ -21,7 +21,8 @@ LLMAPISpecChatHistory class >> from: messages [
 LLMAPISpecChatHistory >> addMessage: aMessage [
 
 	self model add: aMessage.
-	panel add: (LLMAPISpecChatBubble from: aMessage)
+	aMessage role = 'system' ifFalse: [
+		panel add: (LLMAPISpecChatBubble from: aMessage) ]
 ]
 
 { #category : 'layout' }
@@ -36,5 +37,6 @@ LLMAPISpecChatHistory >> initializePresenters [
 	panel := SpBoxLayout newTopToBottom.
 
 	self model do: [ :message |
-		panel add: (LLMAPISpecChatBubble from: message) expand: true]
+		message role = 'system' ifFalse: [
+			panel add: (LLMAPISpecChatBubble from: message) expand: true ] ]
 ]

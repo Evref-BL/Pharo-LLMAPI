@@ -14,6 +14,7 @@ LLMAPIChatObjectToolCountClasses >> executeWithArguments: arguments [
 
 { #category : 'initialization' }
 LLMAPIChatObjectToolCountClasses >> initialize [
+
 	super initialize.
 	description := 'I count the number of classes in the system'.
 	name := 'classCounter'

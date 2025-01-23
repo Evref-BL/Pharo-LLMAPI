@@ -23,6 +23,8 @@ LLMAPISpecChat >> askLLM [
 		model: 'mistral-small-latest';
 		top_p: 1;
 		max_tokens: 250;
+		tools:
+			(LLMAPIChatObjectTool allSubclasses collect: [ :clazz | clazz new ]);
 		messages: history model.
 
 	result := api performRequest.
@@ -64,5 +66,7 @@ LLMAPISpecChat >> initializePresenters [
 
 	inputField := self newTextInput.
 	inputField whenSubmitDo: [ :text | self askLLM ].
-	history := LLMAPISpecChatHistory from: OrderedCollection new
+	history := LLMAPISpecChatHistory from: { (LLMAPIChatObjectMessage
+			            role: 'system'
+			            content: 'You are a usefull assistant') } asOrderedCollection
 ]
