@@ -1,3 +1,10 @@
+"
+Handles the specific chat functionalities in the application.
+
+•	askLLM: Sends the chat input to a remote language model and processes the response.
+•	defaultLayout: Sets up the layout for the chat interface including the history and input field.
+•	initializePresenters: Sets up the chat interface components like the input field and submit button.
+"
 Class {
 	#name : 'LLMAPISpecChat',
 	#superclass : 'SpPresenter',
