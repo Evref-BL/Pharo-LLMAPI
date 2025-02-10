@@ -26,6 +26,18 @@ LLMAPISpec class >> open [
 ]
 
 { #category : 'layout' }
+LLMAPISpec >> addNewChat [
+
+    | newPage |
+    newPage := SpNotebookPage
+        title: 'New Chat'
+        icon: (self iconNamed: #announcement)
+        provider: [ LLMAPISpecChat new ].
+    notebook addPage: newPage.
+    notebook selectPage: newPage
+]
+
+{ #category : 'layout' }
 LLMAPISpec >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
@@ -46,18 +58,50 @@ LLMAPISpec >> initialExtent [
 ]
 
 { #category : 'initialization' }
-LLMAPISpec >> initializePresenters [
+LLMAPISpec >> initializePresenters [ 
 
-	notebook := self newNotebook.
-	toolbar := self newMenuBar.
-	notebook addPage: (SpNotebookPage
-			 title: 'Chat'
-			 icon: (self iconNamed: #announcement)
-			 provider: [ LLMAPISpecChat new ])
+    notebook := self newNotebook.
+    toolbar := self newToolbar.
+    
+    toolbar add: (SpToolbarButtonPresenter new
+        label: 'New Chat';
+        icon: (self iconNamed: #add);
+        help: 'Create a new chat';
+        action: [ self addNewChat ];
+        yourself).
+
+    notebook addPage: (SpNotebookPage
+        title: 'Chat'
+        icon: (self iconNamed: #announcement)
+        provider: [ LLMAPISpecChat new ])
+]
+
+{ #category : 'accessing' }
+LLMAPISpec >> notebook [
+
+	^ notebook
+]
+
+{ #category : 'accessing' }
+LLMAPISpec >> notebook: anObject [
+
+	notebook := anObject
 ]
 
 { #category : 'specs' }
 LLMAPISpec >> title [
 	
 	^ 'LLM Chat'
+]
+
+{ #category : 'accessing' }
+LLMAPISpec >> toolbar [
+
+	^ toolbar
+]
+
+{ #category : 'accessing' }
+LLMAPISpec >> toolbar: anObject [
+
+	toolbar := anObject
 ]
