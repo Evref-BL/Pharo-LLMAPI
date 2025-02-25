@@ -27,6 +27,7 @@ LLMAPIFimObjectPayload >> asJsonableObject [
 	self model ifNotNil: [ :v | dic at: #model put: v ].
 	self prompt ifNotNil: [ :v | dic at: #prompt put: v ].
 	self max_tokens ifNotNil: [ :v | dic at: #max_tokens put: v ].
+	self stop ifNotNil: [ :v | dic at: #stop put: v ].
 	^ dic
 ]
 
