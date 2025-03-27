@@ -1,5 +1,7 @@
 # Pharo LLM API
 
+[![DOI](https://zenodo.org/badge/888519239.svg)](https://doi.org/10.5281/zenodo.15094909)
+
 ## Installation
 
 ```st
