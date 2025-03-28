@@ -1,0 +1,40 @@
+name: PR CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the development branch
+on:
+  pull_request:
+    branches: 
+      - v*
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        smalltalk: [ Pharo64-12  ]
+    name: ${{ matrix.smalltalk }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        id: smalltalkci
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-image }} .smalltalk.ston
+        shell: bash
+        timeout-minutes: 15
+      
+      # Auto Reneraku
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.AUTO_RENERAKU_APP_ID }}
+          private-key: ${{ secrets.AUTO_RENERAKU_PRIVATE_KEY }}
+      - name: AutoReneraku
+        uses: badetitou/AutoReneraku@main
+        with:
+          pat:  ${{ steps.generate-token.outputs.token }}

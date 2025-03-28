@@ -1,0 +1,18 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'LLMAPI',
+      #directory : 'src',
+      #ignoreImage : true,
+      #onConflict : #useIncoming,
+      #onUpgrade : #useIncoming
+    }
+  ],
+  #testing : {
+    #failOnZeroTests : false,
+    #coverage : {
+      #packages : [ 'LLM-API.*' ],
+      #format : #lcov
+    }
+  }
+}
