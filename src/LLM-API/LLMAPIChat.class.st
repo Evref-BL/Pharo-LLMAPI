@@ -1,3 +1,25 @@
+"
+# Example with ollama
+
+```st
+api := LLMAPI chat.
+api host: '127.0.0.1'.
+api port: 11434.
+api apiKey: nil.
+
+api payload
+	temperature: 0.5;
+	model: 'devstral';
+	top_p: 1;
+	max_tokens: 250;
+	messages: {
+		LLMAPIChatObjectMessage role: 'system' content: 'You are a usefull assistant'.
+		LLMAPIChatObjectMessage role: 'user' content: 'How to write hello world in Pharo?'.
+		 }.
+
+result := api performRequest.
+```
+"
 Class {
 	#name : 'LLMAPIChat',
 	#superclass : 'LLMAPI',
