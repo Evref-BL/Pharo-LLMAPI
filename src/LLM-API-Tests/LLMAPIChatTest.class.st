@@ -20,6 +20,12 @@ LLMAPIChatTest >> setUp [
 ]
 
 { #category : 'running' }
+LLMAPIChatTest >> testCheckModelExist [
+
+	self should: [ api performRequest ] raise: LLMPayloadNoModelError
+]
+
+{ #category : 'running' }
 LLMAPIChatTest >> testCorrectInstance [
 
 	self assert: api class equals: LLMAPIChat

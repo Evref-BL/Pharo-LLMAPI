@@ -17,6 +17,12 @@ LLMAPIFimTest >> setUp [
 ]
 
 { #category : 'running' }
+LLMAPIFimTest >> testCheckModelExist [
+
+	self should: [ api performRequest ] raise: LLMPayloadNoModelError
+]
+
+{ #category : 'running' }
 LLMAPIFimTest >> testCorrectInstance [
 
 	self assert: api class equals: LLMAPIFim

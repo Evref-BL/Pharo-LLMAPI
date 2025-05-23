@@ -225,15 +225,18 @@ LLMAPI >> port: anObject [
 
 { #category : 'accessing' }
 LLMAPI >> prepareRequest [
+	"check some properties"
 
+	(self payload model isNil or: [ self payload model isEmpty ])
+		ifTrue: [ LLMPayloadNoModelError signal ].
+	"Prepare request"
 	self apiKey ifNotNil: [ :_apiKey |
 		client setBearerAuthentication: _apiKey ].
 	client forJsonREST.
-	self https
+	(self https isNil or: [ self https ])
 		ifTrue: [ client https ]
 		ifFalse: [ client http ].
 	client host: self host.
 	client port: self port.
-	client path: self path.
-
+	client path: self path
 ]
