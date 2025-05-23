@@ -16,7 +16,7 @@ LLMAPIFim >> payloadClass [
 	^ LLMAPIFimObjectPayload
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api' }
 LLMAPIFim >> performRequest [
 
 	self prepareRequest.

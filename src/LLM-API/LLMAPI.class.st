@@ -6,11 +6,14 @@ Class {
 		'port',
 		'client',
 		'content',
-		'apiKey'
+		'apiKey',
+		'https'
 	],
 	#classInstVars : [
 		'apiKey',
-		'host'
+		'host',
+		'port',
+		'https'
 	],
 	#category : 'LLM-API',
 	#package : 'LLM-API'
@@ -52,6 +55,18 @@ LLMAPI class >> host: anObject [
 	host := anObject
 ]
 
+{ #category : 'accessing' }
+LLMAPI class >> https [
+
+	^ https
+]
+
+{ #category : 'accessing' }
+LLMAPI class >> https: aBoolean [
+
+	https := aBoolean
+]
+
 { #category : 'as yet unclassified' }
 LLMAPI class >> llmSettingOn: aBuilder [
 
@@ -60,18 +75,41 @@ LLMAPI class >> llmSettingOn: aBuilder [
 		parent: #tools;
 		name: 'LLM API';
 		with: [
-			(aBuilder setting: #apiKey)
-				order: -100000;
-				label: 'LLM API Key';
-				target: self;
-				default: '';
-				ghostHelp: 'My key'.
-			(aBuilder setting: #host)
-				order: 0;
-				label: 'LLM host';
-				target: self;
-				default: 'api.mistral.ai';
-				ghostHelp: 'api.mistral.ai' ]
+				(aBuilder setting: #apiKey)
+					order: -100000;
+					label: 'LLM API Key';
+					target: self;
+					default: '';
+					ghostHelp: 'My key'.
+				(aBuilder setting: #host)
+					order: 0;
+					label: 'LLM host';
+					target: self;
+					default: 'api.mistral.ai';
+					ghostHelp: 'api.mistral.ai'.
+				(aBuilder setting: #port)
+					order: 0;
+					label: 'LLM port';
+					target: self;
+					default: 443;
+					ghostHelp: '443'.
+				(aBuilder setting: #https)
+					order: 0;
+					label: 'LLM host uses ssl (https)';
+					target: self;
+					default: true ]
+]
+
+{ #category : 'accessing' }
+LLMAPI class >> port [
+
+	^ port
+]
+
+{ #category : 'accessing' }
+LLMAPI class >> port: aPortNumber [
+
+	port := aPortNumber
 ]
 
 { #category : 'accessing' }
@@ -122,6 +160,18 @@ LLMAPI >> host: anObject [
 	host := anObject
 ]
 
+{ #category : 'accessing' }
+LLMAPI >> https [
+
+	^ https
+]
+
+{ #category : 'accessing' }
+LLMAPI >> https: aBoolean [
+
+	https := aBoolean
+]
+
 { #category : 'initialization' }
 LLMAPI >> initialize [
 
@@ -129,6 +179,9 @@ LLMAPI >> initialize [
 	client := ZnClient new.
 	self apiKey: LLMAPI apiKey.
 	self host: LLMAPI host.
+	self port: LLMAPI port.
+	self https: LLMAPI https.
+	
 ]
 
 { #category : 'accessing' }
@@ -172,11 +225,18 @@ LLMAPI >> port: anObject [
 
 { #category : 'accessing' }
 LLMAPI >> prepareRequest [
+	"check some properties"
 
+	(self payload model isNil or: [ self payload model isEmpty ])
+		ifTrue: [ LLMPayloadNoModelError signal ].
+	"Prepare request"
 	self apiKey ifNotNil: [ :_apiKey |
 		client setBearerAuthentication: _apiKey ].
 	client forJsonREST.
-	client https.
+	(self https isNil or: [ self https ])
+		ifTrue: [ client https ]
+		ifFalse: [ client http ].
 	client host: self host.
+	client port: self port.
 	client path: self path
 ]
