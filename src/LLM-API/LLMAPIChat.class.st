@@ -38,7 +38,7 @@ LLMAPIChat >> payloadClass [
 	^ LLMAPIChatObjectPayload
 ]
 
-{ #category : 'accessing' }
+{ #category : 'api' }
 LLMAPIChat >> performRequest [
 
 	| intermediateResult |
