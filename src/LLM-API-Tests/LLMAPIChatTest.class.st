@@ -21,7 +21,7 @@ LLMAPIChatTest >> setUp [
 
 { #category : 'running' }
 LLMAPIChatTest >> testCheckModelExist [
-
+	api payload model: nil.
 	self should: [ api performRequest ] raise: LLMPayloadNoModelError
 ]
 
