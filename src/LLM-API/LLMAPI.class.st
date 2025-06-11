@@ -73,7 +73,7 @@ LLMAPI class >> llmSettingOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #LLMAPI)
 		parent: #tools;
-		name: 'LLM API';
+		name: self settingName;
 		with: [
 				(aBuilder setting: #apiKey)
 					order: -100000;
@@ -110,6 +110,12 @@ LLMAPI class >> port [
 LLMAPI class >> port: aPortNumber [
 
 	port := aPortNumber
+]
+
+{ #category : 'as yet unclassified' }
+LLMAPI class >> settingName [
+
+	^ 'LLM API'
 ]
 
 { #category : 'accessing' }
