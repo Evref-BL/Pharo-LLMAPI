@@ -17,7 +17,7 @@ Class {
 	#package : 'LLM-Spec'
 }
 
-{ #category : 'initialization' }
+{ #category : 'api' }
 LLMAPISpecChat >> askLLM [
 
 	| api result resultContent |
@@ -56,6 +56,12 @@ LLMAPISpecChat >> defaultLayout [
 		  spacing: 5;
 		  add: submitRow expand: false;
 		  yourself
+]
+
+{ #category : 'accessing' }
+LLMAPISpecChat >> history [
+
+	^ history
 ]
 
 { #category : 'initialization' }
