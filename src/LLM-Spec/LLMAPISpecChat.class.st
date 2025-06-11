@@ -24,12 +24,9 @@ LLMAPISpecChat >> askLLM [
 	history addMessage:
 		(LLMAPIChatObjectMessage role: 'user' content: inputField text).
 	api := LLMAPI chat.
-	api host: 'api.mistral.ai'.
 	api payload
 		temperature: 0.5;
-		model: 'mistral-small-latest';
 		top_p: 1;
-		max_tokens: 250;
 		tools:
 			(LLMAPIChatObjectTool allSubclasses collect: [ :clazz | clazz new ]);
 		messages: history model.

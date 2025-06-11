@@ -23,9 +23,47 @@ result := api performRequest.
 Class {
 	#name : 'LLMAPIChat',
 	#superclass : 'LLMAPI',
+	#classInstVars : [
+		'chatModel'
+	],
 	#category : 'LLM-API',
 	#package : 'LLM-API'
 }
+
+{ #category : 'accessing' }
+LLMAPIChat class >> chatModel [
+
+	^ chatModel
+]
+
+{ #category : 'accessing' }
+LLMAPIChat class >> chatModel: anObject [
+
+	chatModel := anObject
+]
+
+{ #category : 'as yet unclassified' }
+LLMAPIChat class >> llmSettingOn: aBuilder [
+
+	<systemsettings>
+	(aBuilder group: #LLMChat)
+		parent: super settingName;
+		name: 'LLM Chat';
+		with: [
+				(aBuilder setting: #chatModel)
+					order: 0;
+					label: 'LLM Chat default model';
+					target: self;
+					default: 'devstral:latest';
+					ghostHelp: 'devstral:latest' ]
+]
+
+{ #category : 'initialization' }
+LLMAPIChat >> initialize [
+
+	super initialize.
+	self payload model: self class chatModel
+]
 
 { #category : 'accessing' }
 LLMAPIChat >> path [
