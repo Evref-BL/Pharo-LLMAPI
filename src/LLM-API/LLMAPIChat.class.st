@@ -67,6 +67,7 @@ LLMAPIChat >> initialize [
 
 { #category : 'accessing' }
 LLMAPIChat >> path [
+
 	^ 'v1/chat/completions'
 ]
 
