@@ -25,14 +25,24 @@ LLMAPISpecChatBubble class >> from: aMessage [
 		yourself
 ]
 
+{ #category : 'initialization' }
+LLMAPISpecChatBubble >> contentArea [
+
+	^ contentArea
+]
+
 { #category : 'layout' }
 LLMAPISpecChatBubble >> defaultLayout [
 
 	^ SpBoxLayout newTopToBottom
+		  beNotHomogeneous;
 		  add: self model role expand: false;
-		  "add: roleText expand: false;"add: contentArea
-		  withConstraints: [ :constraints | 
-			constraints height: (self class inputTextHeight) * 4 ];
+		  add: contentArea withConstraints: [ :constraints |
+				  self contentArea build.
+				  constraints
+					  height:
+						  ((self contentArea text lineHeightsWrappingAtWidth:
+								   self extent x) sum) + (self class inputTextHeight * 1.5) ];
 		  yourself
 ]
 

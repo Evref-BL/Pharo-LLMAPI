@@ -30,21 +30,25 @@ LLMAPISpecChatHistory >> addMessage: aMessage [
 
 	self model add: aMessage.
 	aMessage role = 'system' ifFalse: [
-		panel add: (LLMAPISpecChatBubble from: aMessage) ]
+		panel addPresenter: (LLMAPISpecChatBubble from: aMessage) ]
 ]
 
 { #category : 'layout' }
 LLMAPISpecChatHistory >> defaultLayout [
 
-	^ SpScrollableLayout with: panel
+	| scrollPane |
+	scrollPane := SpBoxLayout new
+		              add: panel;
+		              yourself.
+	^ scrollPane
 ]
 
 { #category : 'initialization' }
 LLMAPISpecChatHistory >> initializePresenters [
 
-	panel := SpBoxLayout newTopToBottom.
+	panel := SpComponentListPresenter new.
 
 	self model do: [ :message |
-		message role = 'system' ifFalse: [
-			panel add: (LLMAPISpecChatBubble from: message) expand: true ] ]
+			message role = 'system' ifFalse: [
+				panel addPresenter: (LLMAPISpecChatBubble from: message) ] ]
 ]

@@ -19,6 +19,16 @@ Class {
 }
 
 { #category : 'examples' }
+LLMAPISpec class >> menuCommandOn: aBuilder [
+
+	<worldMenu>
+	(aBuilder item: #'Open LLM Chat')
+		order: 1000;
+		action: [ self open ];
+		help: 'Open an LLM Chat wincow'
+]
+
+{ #category : 'examples' }
 LLMAPISpec class >> open [
 	<example>
 	
