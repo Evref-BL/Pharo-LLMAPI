@@ -61,6 +61,7 @@ LLMAPIChat class >> llmSettingOn: aBuilder [
 { #category : 'initialization' }
 LLMAPIChat >> initialize [
 
+"test"
 	super initialize.
 	self payload model: self class chatModel
 ]
